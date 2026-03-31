@@ -1,3 +1,22 @@
+.App-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #1a1a2e;
+  color: white;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.user-greeting {
+  font-size: 14px;
+  color: #adb5bd;
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
