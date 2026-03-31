@@ -1,6 +1,6 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -37,4 +37,4 @@ module.exports = async (req, res) => {
     console.error('메일 전송 실패:', error);
     res.status(500).json({ message: '서버 오류가 발생했습니다.' });
   }
-};
+}
