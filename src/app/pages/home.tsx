@@ -1,13 +1,10 @@
+import { useState } from 'react';
 import { TabBar } from '../components/tab-bar';
-import { useNavigate } from 'react-router';
-import { COLORS, GRADIENTS, ROUTES } from '../constants/design';
+import { ApplyModal } from '../components/apply-modal';
+import { COLORS, GRADIENTS } from '../constants/design';
 
-/**
- * 홈 페이지 컴포넌트
- * 히어로 섹션과 CTA 버튼 포함
- */
 export default function Home() {
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-900 relative">
@@ -27,7 +24,7 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-6 text-center text-white md:px-12">
-          <p 
+          <p
             className="text-sm md:text-base mb-4 tracking-wide font-medium"
             style={{ color: COLORS.gold }}
           >
@@ -43,7 +40,7 @@ export default function Home() {
           </p>
 
           <button
-            onClick={() => navigate(ROUTES.apply)}
+            onClick={() => setIsModalOpen(true)}
             className="px-8 py-3 md:px-12 md:py-4 md:text-lg text-white rounded font-semibold transition-colors shadow-lg hover:shadow-xl"
             style={{ backgroundColor: COLORS.gold }}
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = GRADIENTS.goldHover}
@@ -53,6 +50,8 @@ export default function Home() {
           </button>
         </div>
       </div>
+
+      <ApplyModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
