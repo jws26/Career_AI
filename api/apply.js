@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -11,17 +11,11 @@ export default async function handler(req, res) {
     return res.status(400).json({ message: '이름과 이메일을 입력해주세요.' });
   }
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
-    await transporter.sendMail({
-      from: process.env.SMTP_USER,
+    await resend.emails.send({
+      from: 'Careermap <onboarding@resend.dev>',
       to: 'jiwonsung_21@yonsei.ac.kr',
       subject: '[커리어설계소] 새로운 사전 신청이 접수되었습니다',
       html: `
