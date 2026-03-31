@@ -26,7 +26,8 @@ export function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
 
     setIsLoading(true);
     try {
-      await fetch('/api/apply', {
+      const apiUrl = import.meta.env.VITE_API_URL || '';
+      await fetch(`${apiUrl}/api/apply`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email }),
