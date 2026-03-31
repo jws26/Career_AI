@@ -26,7 +26,7 @@ export function ApplyModal({ isOpen, onClose }: ApplyModalProps) {
 
     setIsLoading(true);
     try {
-      await fetch('/api/login', {
+      await fetch('/api/apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email }),
